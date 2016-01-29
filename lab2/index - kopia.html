@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="./css/index.css">
     <title>Dinner planner</title>
 
     <!-- Bootstrap CSS -->
@@ -18,11 +17,13 @@
 			<p>From the best chefs in the world directly into your kitchen</p>
 		</div>
 		<div id="exampleView">
-			<h2>A Home Dinner Service</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce maximus ut libero id semper. Phasellus laoreet dignissim magna sed vehicula. Sed venenatis eros massa, in ultricies metus mattis in. Curabitur dignissim mi sem, non imperdiet felis cursus at.</p>
-
-			<p>Start quickly</p>
-			<button id="newDinnerButton">Create New Dinner</button>
+			<div>
+				Number of guests: <span id="numberOfGuests"></span>
+			</div>
+			<div>
+          <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
+				<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
+			</div>
 		</div>
 	</div>
 
