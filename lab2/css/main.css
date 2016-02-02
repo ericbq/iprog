@@ -24,6 +24,11 @@ hr {
 	height: 1px;
 }
 
+#headline {
+	padding-left: 5%;
+	background-color: lightgrey;
+}
+
 #content {
 	flex: 1;
 	display: flex;
@@ -92,6 +97,19 @@ td {
 #mid {
 	flex: 1;
 	border-top: 1px solid;
+
+	display: flex;
+	align-items: stretch;
+	flex-direction: column;
+}
+
+#mid-upper {
+	height: 20%;
+	border-bottom: 1px solid black;
+}
+
+#mid-lower {
+	flex: 1;
 }
 
 
