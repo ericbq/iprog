@@ -1,0 +1,101 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	align-items: stretch;
+	flex-direction: column;
+}
+
+
+#left input {
+	max-width: 50px;
+	margin-bottom: 5px; 
+}
+
+button {
+	background: rgba(246,178,107,1);
+}
+
+hr {
+	background-color: black;
+	height: 1px;
+}
+
+#content {
+	flex: 1;
+	display: flex;
+	align-items: stretch;
+	flex-direction: row;
+}
+
+#left {
+	border: 1px solid;
+	width: 250px;
+}
+
+#left button {
+	margin: 0 auto;
+	width: 80%;
+}
+
+#left-headline {
+	padding-left: 10%;
+
+}
+
+/*Always show arrows in number input field */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+
+#dinner-table {
+	width: 100%;
+	text-align: center;
+}
+
+#dinner-table p {
+	float: right;
+	position: relative;
+	right: 10%;
+}
+
+table {
+	width: 100%;
+}
+
+#table-header {
+	background-color: lightgrey;
+	border-bottom: 1px solid black;
+	border-top: 1px solid;
+}
+
+td {
+	background-color: white;
+	text-align: left;
+}
+
+.dish-column {
+	position: relative;
+	left: 10%;
+}
+
+.cost-column {
+	position: relative;
+	text-align: right;
+	right: 10%;
+}
+
+#mid {
+	flex: 1;
+	border-top: 1px solid;
+}
+
+
+
+
+
+
