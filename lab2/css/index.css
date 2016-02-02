@@ -3,18 +3,20 @@ body, html {
 	background-size: cover;
 	margin: 0;
 	padding: 0;
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 #header {
 	background: rgba(250, 221, 138, 0.7);
 	border: 4px solid black;
 	width:100vw;
-	height:20vh;
+	height:17vh;
 	display: block;
+	font-weight: bold;
 }
 
 #headerText {
-	padding-top: 7vh;
+	padding-top: 6vh;
 }
 
 #headerText h1, #headerText p {
@@ -39,4 +41,26 @@ body, html {
 	padding: 0;
 	padding-left: 0;
 	width: 100vw;
+}
+
+#exampleView {
+	width: 45vw;
+	background: rgba(255, 255, 255, 0.7);
+	padding: 20px;
+
+	position: relative;
+	top: 30vh;
+	margin: 0;
+}
+
+#newDinnerButton {
+	background: rgba(246, 178, 107, 1);
+	border: 3px solid black;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+hr {
+	height: 2px;
+	background-color: black;
 }
