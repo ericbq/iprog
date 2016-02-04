@@ -110,7 +110,6 @@ td {
 
 	padding-left: 5%;
 	padding-right: 5%;
-
 }
 
 #mid-upper select {
@@ -120,10 +119,27 @@ td {
 #mid-lower {
 	flex: 1;
 	padding-top: 20px;
+	overflow-y: scroll;
+}
+
+/*
+*	Setting dish width and height secures the bootstrap to be a nice grid.
+*/
+
+.dish { 
+	width: 150px;
+	height:300px;
+}
+
+.col-sm-15 {
+	width: 20%;
+	float: left;
 }
 
 .dish-header {
+	padding:1px;
 	border: 1px solid;
+	width: 144px;
 }
 
 .dish-header p {
