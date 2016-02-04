@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dinner planner</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+	<div id="headline">
+		<h1>HOMELETTE</h1>
+		<p>From the best chefs in the world directly into your kitchen</p>
+	</div>
+
+	<div id="content">
+		<div id="left">
+			<div id="left-headline">
+				<h2>My Dinner</h2>
+				<form>
+					People
+					<input type="number" id="numberOfGuests">
+				</form>
+			</div>
+			<div id="dinner-table">
+				<table>
+					<tr id="table-header">
+						<th class="dish-column">Dish Name</th>
+						<th class="cost-column">Cost</th>
+					</tr>
+					<tr>
+						<td class="dish-column">Pending</td>
+						<td class="cost-column">0.00</td>
+					</tr>
+				</table>
+				<hr>
+				<p>SEK 0.00</p>
+				<button>Confirm Dinner</button>
+			</div>
+		</div>
+		<div id="dish-mid">
+			<div id="mid-left">
+				<h2 id="dish-headline"></h2>
+				<img>
+				<p id="dish-description">
+					Lorem ipsum dolor sit amet, pri eu insolens corrumpit. Mea an quem saperet consequat, at sit soleat postulant iracundia, quo putent efficiendi eu. Summo ridens epicuri ad mea, ei clita utroque propriae ius, mei ei animal nostrum. Te altera tritani repudiare est.
+				</p>
+				<button>back to Select Dish</button>
+				<h2>Preparation</h2>
+				<p id="dish-instructions"></p>
+			</div>
+
+			<div id="mid-right">
+				<h3>Ingredients for 4 people</h3>
+				<hr>
+				<table id="ingredient-list">
+				</table>
+				<hr>
+				<table>
+					<tr>	
+						<td><button>Confirm Dish</button></td>
+						<td><p>SEK</p></td>
+						<td><p id="price-dish"></p></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+	</div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+	<!-- The application JavaScript code -->
+	<script src="js/app.js"></script>
+	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/exampleView.js"></script>
+	<script src="js/view/dishView.js"></script>
+
+
+</body>
+</html>

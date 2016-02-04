@@ -21,7 +21,7 @@ var ExampleView = function (container, model) {
 						"<img src=\"images/" + object.image + "\">" +
 						"<p>" + object.name + "</p>" +
 					"</div>" +
-					"<div class=\"dish-description\"><p>" + object.description + "</p> </div>" +
+					"<div class=\"dish-description\"><p>" + "Lorem ipsum dolor sit amet, pri eu insolens corrumpit. Mea an quem saperet consequat, at sit soleat postulant iracundia, quo putent efficiendi eu. Summo ridens epicuri ad mea, ei clita utroque propriae ius, mei ei animal nostrum. Te altera tritani repudiare est." + "</p> </div>" +
 				"</div>");
 
 			console.log(object.image + " " + object.name + " " + object.description);
