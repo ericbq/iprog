@@ -238,3 +238,28 @@ td {
 }
 
 
+
+/**
+*
+*
+*	DINNER OVERVIEW
+*
+*/
+
+#overview-content {
+	flex: 1;
+	display: flex;
+	align-items: stretch;
+	flex-direction: column;
+}
+
+#overview-headline {
+	background-color: rgb(255,229,153);
+	padding-left: 5%;
+}
+
+
+#overview-overview {
+	flex: 1;
+}
+
