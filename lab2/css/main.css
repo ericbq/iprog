@@ -29,7 +29,7 @@ hr {
 	background-color: lightgrey;
 	padding-bottom: 40px;
 	padding-top: 40px;
-
+	border-bottom: 1px solid black;
 }
 
 #headline h1, #headline p {
@@ -46,8 +46,9 @@ hr {
 }
 
 #left {
-	border: 1px solid;
+	border-right: 1px solid;
 	width: 250px;
+	height: 100vh;
 }
 
 #left hr {
@@ -220,5 +221,20 @@ td {
 	background-color: rgb(255,229,153);
 	padding-left: 2%;
 	padding-right: 2%;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
 }
+
+#mid-right table tr td {
+	background-color: rgb(255,229,153);
+}
+
+#mid-right button {
+	margin-bottom: 5%;
+}
+
+#dish-summary td:nth-child(1){
+	width:82%;
+}
+
 
