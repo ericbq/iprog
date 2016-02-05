@@ -246,7 +246,7 @@ td {
 	color: red;
 }
 
-.col-sm-3 .price-text {
+.dish-list .price-text {
 	color: red;
 	text-align: right;
 }
@@ -271,16 +271,24 @@ td {
 #overview-headline {
 	background-color: rgb(255,229,153);
 	padding-left: 5%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid black;
 }
 
+#overview-headline h2, #overview-headline button {
+	display: inline;
+	margin-left: 15px;
+}
+
+#overview-headline button {
+	
+
+}
 
 #overview {
 	flex: 1;
 	padding-top: 20px;
-}
-
-.last-dish {
-	border-right: 1px solid black;
 }
 
 #overview .container  {
@@ -289,12 +297,38 @@ td {
   	align-items: flex-end;
 }
 
+#selected-menu {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 #print-recipe {
 	width: 100vw;
 	text-align: center;
+	font-size: 23px;
+}
 
+#print-recipe-button {
+	padding-left: 23px;
+	padding-right: 23px;
 }
 
 .dish-header {
 	text-align: center;
+	
+}
+
+.dish-list {
+	width: 142px;
+	padding: 0;
+	margin-right: 20px;
+}
+
+.last-dish {
+	width: 162px;
+	border-right: 1px solid black;
+	padding-right: 20px;
 }
