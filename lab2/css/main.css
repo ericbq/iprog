@@ -158,6 +158,10 @@ td {
 *	Setting dish width and height secures the bootstrap to be a nice grid.
 */
 
+.dish-header img {
+	width: 140px;
+}
+
 .dish { 
 	width: 150px;
 	height:300px;
@@ -172,11 +176,12 @@ td {
 	padding:1px;
 	border: 1px solid;
 	width: 144px;
+	background-color: lightgrey;
+
 }
 
 .dish-header p {
 	border-top: 1px solid;
-	background-color: lightgrey;
 }
 
 .dish-description {
@@ -237,6 +242,16 @@ td {
 	width:82%;
 }
 
+.price-text {
+	color: red;
+}
+
+.col-sm-3 .price-text {
+	color: red;
+	text-align: right;
+}
+
+
 
 
 /**
@@ -259,7 +274,27 @@ td {
 }
 
 
-#overview-overview {
+#overview {
 	flex: 1;
+	padding-top: 20px;
 }
 
+.last-dish {
+	border-right: 1px solid black;
+}
+
+#overview .container  {
+	display: flex;
+  	flex-wrap: wrap;
+  	align-items: flex-end;
+}
+
+#print-recipe {
+	width: 100vw;
+	text-align: center;
+
+}
+
+.dish-header {
+	text-align: center;
+}
