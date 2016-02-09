@@ -282,8 +282,9 @@ td {
 }
 
 #overview-headline button {
-	
-
+	position: absolute;
+	right: 30px;
+	border-radius: 2em 0 0 2em;
 }
 
 #overview {
@@ -331,4 +332,31 @@ td {
 	width: 162px;
 	border-right: 1px solid black;
 	padding-right: 20px;
+}
+
+
+/**
+*
+*
+*	DINNER PREPARATION
+*
+*/
+
+#preparation-content td{
+	padding-left: 30px;
+	padding-top: 30px;
+	vertical-align: top;
+}
+
+#preparation-content td img{
+	margin-top: 20px;
+}
+
+#preparation-content td:nth-child(2){
+	width: 40%;
+}
+
+#preparation-content td:nth-child(3){
+	max-width: 40%;
+	padding-right: 30px;
 }
