@@ -2,6 +2,8 @@
 var DinnerModel = function() {
 
 	var numberOfGuests = 3;
+	var observerArray = [];
+
 	var selectedDishes = [{
 		'id':100,
 		'name':'Meat balls',
@@ -176,6 +178,22 @@ var DinnerModel = function() {
 			$price += object.price;
 		});
 		return $price;
+	}
+
+	//Add observer to the observer array
+	this.addObserver = function(observer) {
+		observerArray.push(observer);
+	}
+
+	//Update all observers
+	var notifyObservers = function(obj){
+		$.each(observerArray, function(index, object){
+			if(obj === null){
+				object.update();
+			} else {
+				object.update(obj);
+			}
+		});
 	}
 
 

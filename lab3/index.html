@@ -9,23 +9,76 @@
 
   </head>
   <body>
-  	<div id="header">
-  		<div id="headerText">
-			<h1>HOMELETTE</h1>
-			<p>From the best chefs in the world directly into your kitchen</p>
+  	<div id="landingPage">
+	  	<div id="header">
+	  		<div id="headerText">
+				<h1>HOMELETTE</h1>
+				<p>From the best chefs in the world directly into your kitchen</p>
+			</div>
+		</div>
+		<div class="container">
+			
+			<div id="exampleView">
+				<h2>A Home Dinner Service</h2>
+				<hr>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce maximus ut libero id semper. Phasellus laoreet dignissim magna sed vehicula. Sed venenatis eros massa, in ultricies metus mattis in. Curabitur dignissim mi sem, non imperdiet felis cursus at.</p>
+
+				<br>
+				<p>Start quickly</p>
+				<button id="newDinnerButton">Create New Dinner</button>
+			</div>
 		</div>
 	</div>
-	<div class="container">
-		
-		<div id="exampleView">
-			<h2>A Home Dinner Service</h2>
-			<hr>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce maximus ut libero id semper. Phasellus laoreet dignissim magna sed vehicula. Sed venenatis eros massa, in ultricies metus mattis in. Curabitur dignissim mi sem, non imperdiet felis cursus at.</p>
 
-			<br>
-			<p>Start quickly</p>
-			<button id="newDinnerButton">Create New Dinner</button>
+	<div id="selectDishView">
+		<div id="left">
+			<div id="left-headline">
+				<h2>My Dinner</h2>
+				<form>
+					People
+					<input type="number" id="numberOfGuests">
+				</form>
+			</div>
+			<div id="dinner-table">
+				<table>
+					<tr id="table-header">
+						<th class="number-column"></th>
+						<th class="dish-column">Dish Name</th>
+						<th class="cost-column">Cost</th>
+					</tr>
+					<tr id="pendingRow">
+						<td class="number-column"></td>
+						<td class="dish-column">Pending</td>
+						<td class="cost-column">0.00</td>
+					</tr>
+				</table>
+				<hr>
+				<p id="totalPrice">SEK <span></span></p>
+				<button>Confirm Dinner</button>
+			</div>
 		</div>
+		<div id="mid">
+			<div id="mid-upper">
+				<h2>Select Dish</h2>
+				<hr>
+				<form>
+					<input type="text" id="dish-search" placeholder="Enter key words">
+					<button>search</button>
+
+					<select>
+						<option>Main</option>
+						<option>Dessert</option>
+						<option>Appetizer</option>
+					</select>
+				</form>
+			</div>
+			<div id="mid-lower">
+				<div class="container">
+				</div>
+				
+			</div>
+		</div>
+
 	</div>
 
     <!-- jQuery -->
