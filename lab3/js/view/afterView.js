@@ -1,5 +1,5 @@
 //ExampleView Object constructor
-var ExampleView = function (container, model) {
+var AfterView = function (container, model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
@@ -24,6 +24,21 @@ var ExampleView = function (container, model) {
 
 			console.log(object.image + " " + object.name + " " + object.description);
 		});
+
+		$.each(model.getFullMenu(), function(index, object){
+			console.log(model.getDishPrice(object.id));
+			$("#pendingRow").before(
+				"<tr>" +
+					"<td class=\"number-column\">" + object.id + "</td>" + 
+					"<td class=\"dish-column\">" + object.name + "</td>" + 
+					"<td class=\"cost-column\">" + model.getDishPrice(object.id)*model.getNumberOfGuests() + "</td>" + 
+				"</tr>"
+			);
+		});
+
+		$("#totalPrice span").html(
+			"" + model.getTotalMenuPrice()
+		);
 	})
 
 
