@@ -3,9 +3,24 @@ var SelectionView = function (container, model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
+	this.update = function(arg1, arg2) {
+		if(arg2 === undefined) {
+			if( typeof arg1 === 'number') {
+				model.setNumberOfGuests(arg1);
+			} else {
+				model.selectedDishes = arg1;
+			}
+		} else {
+			model.setNumberOfGuests(arg1);
+			model.selectedDishes = arg2;
+		}
+
+		loadView();
+	}	
+
 	
 
-	$(document).ready(function() {
+	var loadView = function() {
 		$("#numberOfGuests").val( model.getNumberOfGuests() );
 
 		$selectValue = $("#mid-upper select").val();
@@ -21,15 +36,31 @@ var SelectionView = function (container, model) {
 					"</div>" +
 					"<div class=\"dish-description\"><p>" + "Lorem ipsum dolor sit amet, pri eu insolens corrumpit. Mea an quem saperet consequat, at sit soleat postulant iracundia, quo putent efficiendi eu. Summo ridens epicuri ad mea, ei clita utroque propriae ius, mei ei animal nostrum. Te altera tritani repudiare est." + "</p> </div>" +
 				"</div>");
-
-			console.log(object.image + " " + object.name + " " + object.description);
 		});
-	})
+
+		$.each(model.getFullMenu(), function(index, object){
+			console.log(model.getDishPrice(object.id));
+			$("#pendingRow").before(
+				"<tr>" +
+					"<td class=\"number-column\">" + object.id + "</td>" + 
+					"<td class=\"dish-column\">" + object.name + "</td>" + 
+					"<td class=\"cost-column\">" + model.getDishPrice(object.id)*model.getNumberOfGuests() + "</td>" + 
+				"</tr>"
+			);
+		});
+
+		$("#totalPrice span").html(
+			"" + model.getTotalMenuPrice()
+		);
+	}
 
 
-	$("#numberOfGuests").keyup(function() {
-		model.setNumberOfGuests( $this.val() );
+	$("#numberOfGuests").change(function() {
+		model.setNumberOfGuests( $("#numberOfGuests").val() );
+		console.log("hej");
 	});
+
+	$(document).ready(loadView());
 
 }
  

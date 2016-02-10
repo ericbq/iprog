@@ -1,7 +1,25 @@
 //DishView Object constructor
-var OverviewView = function (container, model, selectedMenu) {
+var OverviewView = function (container, model) {
+	var selectedMenu = model.getFullMenu();
 
-	$(document).ready(function() {
+	var update = function(arg1, arg2) {
+		if(arg2 === undefined) {
+			if( typeof arg1 === 'number') {
+				model.setNumberOfGuests(arg1);
+			} else {
+				model.selectedDishes = arg1;
+			}
+		} else {
+			model.setNumberOfGuests(arg1);
+			model.selectedDishes = arg2;
+		}
+		$("#selected-menu").html("");
+		loadView();
+	}
+
+	$(document).ready(loadView);
+
+	var loadView = function() {
 		$("#overview-headline span").html( model.getNumberOfGuests() + " people");
 
 		$totalPrice = 0;
@@ -49,8 +67,6 @@ var OverviewView = function (container, model, selectedMenu) {
 				"<p class=\"price-text\">" + $totalPrice + " SEK<p>" +
 			"</div>"
 		);
-
-
-	});
+	}
 }
  

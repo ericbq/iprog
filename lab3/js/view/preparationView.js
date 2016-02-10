@@ -1,6 +1,6 @@
 //DishView Object constructor
-var PreparationView = function (container, model, selectedMenu) {
-
+var PreparationView = function (container, model) {
+	var selectedMenu = model.getFullMenu();
 	$(document).ready(function() {
 		$("#overview-headline span").html( model.getNumberOfGuests() + " people");
 
