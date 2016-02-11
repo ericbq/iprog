@@ -14,9 +14,14 @@ var SelectionView = function (container, model) {
 			model.setNumberOfGuests(arg1);
 			model.selectedDishes = arg2;
 		}
-
-		loadView();
+		updateView();
 	}	
+
+	var updateView = function() {
+		$("#mid-lower .container").html("");
+		$(".selectedDishRow").remove();
+		loadView();
+	}
 
 	
 
@@ -24,10 +29,15 @@ var SelectionView = function (container, model) {
 		$("#numberOfGuests").val( model.getNumberOfGuests() );
 
 		$selectValue = $("#mid-upper select").val();
-		$searchValue = $("dish-search").val();
+		$searchValue = $("#dish-search").val();
 
-		$.each( model.getAllDishes( $selectValue, $searchValue ).prevObject , function(index, object) {
+		if($searchValue == undefined) {
+			$dishArray = model.getAllDishes( $selectValue).prevObject;
+		}else {	
+			$dishArray = model.getAllDishes( $selectValue, $searchValue );
+		}
 
+		$.each( $dishArray , function(index, object) {
 			$("#mid-lower .container").append(
 				"<div class=\"dish col-sm-15\" id=\"" + object.id + "\">" +
 					"<div class=\"dish-header\">" +  
@@ -39,9 +49,8 @@ var SelectionView = function (container, model) {
 		});
 
 		$.each(model.getFullMenu(), function(index, object){
-			console.log(model.getDishPrice(object.id));
 			$("#pendingRow").before(
-				"<tr>" +
+				"<tr class=\"selectedDishRow\">" +
 					"<td class=\"number-column\">" + object.id + "</td>" + 
 					"<td class=\"dish-column\">" + object.name + "</td>" + 
 					"<td class=\"cost-column\">" + model.getDishPrice(object.id)*model.getNumberOfGuests() + "</td>" + 
@@ -52,12 +61,23 @@ var SelectionView = function (container, model) {
 		$("#totalPrice span").html(
 			"" + model.getTotalMenuPrice()
 		);
+
 	}
 
+	$("#dish-search").keyup(function() {
+		updateView();
+	});
+
+	$("#mid-upper select").change(function() {
+		updateView();
+	});
+
+	$(document).on("click", ".dish", function() {
+		console.log(this.id);
+	})
 
 	$("#numberOfGuests").change(function() {
 		model.setNumberOfGuests( $("#numberOfGuests").val() );
-		console.log("hej");
 	});
 
 	$(document).ready(loadView());

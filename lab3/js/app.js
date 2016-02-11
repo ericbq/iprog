@@ -6,7 +6,8 @@ $(function() {
 	var selectionView = new SelectionView($("#content"), model);
 	model.addObserver(selectionView);
 
-	// var dishView = new DishView($("#content"), model);
+	var dishView = new DishView($("#content"), model);
+	model.addObserver(dishView);
 	// var overviewView = new OverviewView($("#overview-content"), model);
 	// var preparationView = new PreparationView($("#preparation-content"), model);
 

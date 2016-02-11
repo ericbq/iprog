@@ -4,7 +4,7 @@ var DinnerModel = function() {
 	var numberOfGuests = 3;
 	var observerArray = [];
 
-	this.selectedDishes = [{
+	var selectedDishes = [{
 		'id':100,
 		'name':'Meat balls',
 		'type':'main dish',
@@ -84,24 +84,24 @@ var DinnerModel = function() {
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
-		for (var i = this.selectedDishes.length - 1; i >= 0; i--) {
-			if(this.selectedDishes[i].type == type) {
-				return this.selectedDishes[i];
+		for (var i = selectedDishes.length - 1; i >= 0; i--) {
+			if(selectedDishes[i].type == type) {
+				return selectedDishes[i];
 			}
 		}
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		return this.selectedDishes;
+		return selectedDishes;
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		var ingredients = [];
-		for (var i = this.selectedDishes.length - 1; i >= 0; i--) {
-			for (var j = this.selectedDishes[i].ingredients.length - 1; j >= 0; j--) {
-				ingredients.push(this.selectedDishes[i].ingredients[j]);
+		for (var i = selectedDishes.length - 1; i >= 0; i--) {
+			for (var j = selectedDishes[i].ingredients.length - 1; j >= 0; j--) {
+				ingredients.push(selectedDishes[i].ingredients[j]);
 			};
 		};
 		return ingredients;
@@ -111,9 +111,9 @@ var DinnerModel = function() {
 	this.getTotalMenuPrice = function() {
 		var price = 0;
 
-		for (var i = this.selectedDishes.length - 1; i >= 0; i--) {
-			for(var j = this.selectedDishes[i].ingredients.length - 1; j >= 0; j--) {
-				price += this.selectedDishes[i].ingredients[j].price;
+		for (var i = selectedDishes.length - 1; i >= 0; i--) {
+			for(var j = selectedDishes[i].ingredients.length - 1; j >= 0; j--) {
+				price += selectedDishes[i].ingredients[j].price;
 			}
 		}
 		return price * numberOfGuests;
@@ -123,31 +123,31 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
 		var selectedDish = getDish(id);
-		for (var i = this.selectedDishes.length - 1; i >= 0; i--) {
-			if(this.selectedDishes[i].type == selectedDish.type) {
-				this.selectedDishes[i] = selectedDish;
+		for (var i = selectedDishes.length - 1; i >= 0; i--) {
+			if(selectedDishes[i].type == selectedDish.type) {
+				selectedDishes[i] = selectedDish;
 				return;
 			}
 		}
-		this.selectedDishes.push(selectedDish);
-		notifyObservers(this.selectedDishes);
+		selectedDishes.push(selectedDish);
+		notifyObservers(selectedDishes);
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-		for (var i = this.selectedDishes.length - 1; i >= 0; i--) {
-			if(this.selectedDishes[i] == getDish(id)) {
-				this.selectedDishes[i].splice(i, 1);
+		for (var i = selectedDishes.length - 1; i >= 0; i--) {
+			if(selectedDishes[i] == getDish(id)) {
+				selectedDishes[i].splice(i, 1);
 			}
 		}
-		notifyObservers(this.selectedDishes);
+		notifyObservers(selectedDishes);
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-	  return $(dishes).filter(function(index,dish) {
+	  return $(this.dishes).filter(function(index,dish) {
 		var found = true;
 		if(filter){
 			found = false;
@@ -167,9 +167,16 @@ var DinnerModel = function() {
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-	  for(key in dishes){
-			if(dishes[key].id == id) {
-				return dishes[key];
+		 // $.each(this.dishes, function(key, dish) {
+		 // 	if(dish.id == id) {
+		 // 		console.log(dish);
+		 // 		return dish;
+		 // 	}
+		 // });
+
+	  for(key=0; key < this.dishes.length; key++){
+			if(this.dishes[key].id == id) {
+				return this.dishes[key];
 			}
 		}
 	}
@@ -177,7 +184,7 @@ var DinnerModel = function() {
 	//Returns the price of the specific dish
 	this.getDishPrice = function(id){
 		$price = 0;
-		$.each(this.getDish(id).ingredients, function(index, object){
+		$.each(this.getDish( id ).ingredients, function(index, object){
 			$price += object.price;
 		});
 		return $price;
@@ -208,7 +215,7 @@ var DinnerModel = function() {
 	// defining the unit i.e. "g", "slices", "ml". Unit
 	// can sometimes be empty like in the example of eggs where
 	// you just say "5 eggs" and not "5 pieces of eggs" or anything else.
-	var dishes = [{
+	this.dishes = [{
 		'id':1,
 		'name':'French toast',
 		'type':'starter',
@@ -391,7 +398,7 @@ var DinnerModel = function() {
 			'price':4
 			}]
 		},{
-		'id':102,
+		'id':103,
 		'name':'MD 4',
 		'type':'main dish',
 		'image':'meatballs.jpg',
