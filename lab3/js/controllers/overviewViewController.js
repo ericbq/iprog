@@ -19,5 +19,14 @@ var OverviewViewController = function(view, model) {
 		$("#dish-mid").css('display', 'none');
 		$("#overview-content").css('display', 'none');
 		$("#selectDishView").css('display', 'flex');
+		$("#preparation-content").css('display', 'none');
+
+	})
+
+	$("#print-recipe button").click(function() {
+		$("#dish-mid").css('display', 'none');
+		$("#overview-content").css('display', 'none');
+		$("#selectDishView").css('display', 'none');
+		$("#preparation-content").css('display', 'block');
 	})
 }

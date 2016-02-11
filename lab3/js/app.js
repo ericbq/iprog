@@ -16,7 +16,7 @@ $(function() {
 	model.addObserver(overviewViewController);
 
 
-	// var preparationView = new PreparationView($("#preparation-content"), model);
-
-
+	var preparationView = new PreparationView($("#preparation-content"), model);
+	var preparationViewController = new PreparationViewController(preparationView, model);
+	model.addObserver(preparationViewController);
 });

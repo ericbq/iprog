@@ -1,11 +1,10 @@
 //DishView Object constructor
 var PreparationView = function (container, model) {
-	var selectedMenu = model.getFullMenu();
-	$(document).ready(function() {
+
+	this.loadView = function() {
 		$("#overview-headline span").html( model.getNumberOfGuests() + " people");
 
-		$lengthOfArray = selectedMenu.length;
-		//model.getFullMenu();
+		var selectedMenu = model.getFullMenu();
 		$.each(selectedMenu, function(index, dish) {
 			$("#preparation-content table").append(
 				"<tr id=\"tablerow-dish-" + dish.id + "\">" +
@@ -24,6 +23,8 @@ var PreparationView = function (container, model) {
 			);
 		});
 
-	});
+	}
+
+	$(document).ready(this.loadView());
 }
  
