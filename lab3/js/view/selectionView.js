@@ -1,31 +1,6 @@
-//ExampleView Object constructor
 var SelectionView = function (container, model) {
-	
-	// Get all the relevant elements of the view (ones that show data
-  	// and/or ones that responed to interaction)
-	this.update = function(arg1, arg2) {
-		if(arg2 === undefined) {
-			if( typeof arg1 === 'number') {
-				model.setNumberOfGuests(arg1);
-			} else {
-				model.selectedDishes = arg1;
-			}
-		} else {
-			model.setNumberOfGuests(arg1);
-			model.selectedDishes = arg2;
-		}
-		updateView();
-	}	
 
-	var updateView = function() {
-		$("#mid-lower .container").html("");
-		$(".selectedDishRow").remove();
-		loadView();
-	}
-
-	
-
-	var loadView = function() {
+	this.loadView = function() {
 		$("#numberOfGuests").val( model.getNumberOfGuests() );
 
 		$selectValue = $("#mid-upper select").val();
@@ -61,26 +36,7 @@ var SelectionView = function (container, model) {
 		$("#totalPrice span").html(
 			"" + model.getTotalMenuPrice()
 		);
-
 	}
-
-	$("#dish-search").keyup(function() {
-		updateView();
-	});
-
-	$("#mid-upper select").change(function() {
-		updateView();
-	});
-
-	$(document).on("click", ".dish", function() {
-		console.log(this.id);
-	})
-
-	$("#numberOfGuests").change(function() {
-		model.setNumberOfGuests( $("#numberOfGuests").val() );
-	});
-
-	$(document).ready(loadView());
-
+	$(document).ready(this.loadView());
 }
  

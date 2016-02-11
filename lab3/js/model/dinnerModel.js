@@ -1,8 +1,9 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
-	var numberOfGuests = 3;
+	var numberOfGuests = null;
 	var observerArray = [];
+	var activeDish = "";
 
 	var selectedDishes = [{
 		'id':100,
@@ -71,6 +72,15 @@ var DinnerModel = function() {
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
 
+	this.setActiveDish = function(id) {
+		activeDish = id;
+		notifyObservers();
+	}
+
+	this.getActiveDish = function() {
+		return activeDish;
+	}
+
 
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
@@ -122,10 +132,11 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		var selectedDish = getDish(id);
+		var selectedDish = this.getDish(id);
 		for (var i = selectedDishes.length - 1; i >= 0; i--) {
 			if(selectedDishes[i].type == selectedDish.type) {
 				selectedDishes[i] = selectedDish;
+				notifyObservers(selectedDishes);
 				return;
 			}
 		}
@@ -136,7 +147,7 @@ var DinnerModel = function() {
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		for (var i = selectedDishes.length - 1; i >= 0; i--) {
-			if(selectedDishes[i] == getDish(id)) {
+			if(selectedDishes[i] == this.getDish(id)) {
 				selectedDishes[i].splice(i, 1);
 			}
 		}
@@ -198,8 +209,8 @@ var DinnerModel = function() {
 	//Update all observers
 	var notifyObservers = function(obj){
 		$.each(observerArray, function(index, object){
-			if(obj === null){
-				object.update(numberOfGuests, selectedDishes);
+			if(typeof obj === 'undefined'){
+				object.update(numberOfGuests, selectedDishes, activeDish);
 			} else {
 				object.update(obj);
 			}

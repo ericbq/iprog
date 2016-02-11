@@ -34,6 +34,7 @@
 		<h1>HOMELETTE</h1>
 		<p>From the best chefs in the world directly into your kitchen</p>
 	</div>
+
 	<div id="selectDishView">
 		<div id="left">
 			<div id="left-headline">
@@ -82,6 +83,35 @@
 				
 			</div>
 		</div>
+
+		<div id="dish-mid">
+			<div id="mid-left">
+				<h2 id="dish-headline"></h2>
+				<img>
+				<p id="dish-description">
+					Lorem ipsum dolor sit amet, pri eu insolens corrumpit. Mea an quem saperet consequat, at sit soleat postulant iracundia, quo putent efficiendi eu. Summo ridens epicuri ad mea, ei clita utroque propriae ius, mei ei animal nostrum. Te altera tritani repudiare est.
+				</p>
+				<button>back to Select Dish</button>
+				<h2>Preparation</h2>
+				<p id="dish-instructions"></p>
+			</div>
+
+			<div id="mid-right">
+				<h3>Ingredients for 4 people</h3>
+				<hr>
+				<table id="ingredient-list">
+				</table>
+				<hr>
+				<table id="dish-summary">
+					<tr>	
+						<td><button>Confirm Dish</button></td>
+						<td><p>SEK</p></td>
+						<td><p id="price-dish"></p></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
 	</div>
 
     <!-- jQuery -->
@@ -92,11 +122,16 @@
 
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
-	<script src="js/view/dishView.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
+
 	<script src="js/view/selectionView.js"></script>
+	<script src="js/view/dishView.js"></script>
 	<script src="js/view/preparationView.js"></script>
 	<script src="js/view/overviewView.js"></script>
 	<script src="js/view/afterView.js"></script>
+
+	<script src="js/controllers/selectionViewController.js"></script>
+	<script src="js/controllers/dishViewController.js"></script>
+
   </body>
 </html>

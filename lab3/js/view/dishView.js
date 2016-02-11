@@ -1,8 +1,10 @@
 //DishView Object constructor
-var DishView = function (container, model, dish) {
+var DishView = function (container, model) {
+	this.id = "";
 
-	$(document).ready(function() {
-		$("#numberOfGuests").val( model.getNumberOfGuests() );
+	this.loadView = function() {
+		this.id = model.getActiveDish();
+		var dish = model.getDish(this.id);
 
 		$("#dish-headline").html( dish.name );
 		$("#mid-left img").attr("src", "images/" + dish.image );
@@ -21,12 +23,6 @@ var DishView = function (container, model, dish) {
 		});
 
 		$("#price-dish").html($dishPrice);
-	 });
-
-
-	$("#numberOfGuests").keyup(function() {
-		model.setNumberOfGuests( $this.val() );
-	});
-
+	}
 }
  

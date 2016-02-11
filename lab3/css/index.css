@@ -276,6 +276,7 @@ td {
 
 #dish-mid {
 	width:100%;
+	display: none;
 }
 
 #mid-left {
