@@ -1,7 +1,7 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
-	var numberOfGuests = null;
+	var numberOfGuests = 3;
 	var observerArray = [];
 	var activeDish = "";
 

@@ -59,7 +59,7 @@
 				</table>
 				<hr>
 				<p id="totalPrice">SEK <span></span></p>
-				<button>Confirm Dinner</button>
+				<button id="confirm-dinner-button">Confirm Dinner</button>
 			</div>
 		</div>
 		<div id="mid">
@@ -111,7 +111,25 @@
 				</table>
 			</div>
 		</div>
+	</div>
 
+	<div id="overview-content">
+		<div id="overview-headline">
+			<h2>My Dinner: <span></span></h2>
+			<button>Go back and edit dinner</button>
+		</div>
+
+		<div id="overview">
+
+			<div id="selected-menu" class="container">
+				
+			</div>
+			<hr>
+			<div id="print-recipe">
+				<button id="print-recipe-button">Print Full Recipe</button>
+			</div>
+				
+		</div>
 	</div>
 
     <!-- jQuery -->
@@ -132,6 +150,8 @@
 
 	<script src="js/controllers/selectionViewController.js"></script>
 	<script src="js/controllers/dishViewController.js"></script>
+	<script src="js/controllers/overviewViewController.js"></script>
+
 
   </body>
 </html>

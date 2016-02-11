@@ -1,5 +1,6 @@
 var SelectionView = function (container, model) {
 
+
 	this.loadView = function() {
 		$("#numberOfGuests").val( model.getNumberOfGuests() );
 

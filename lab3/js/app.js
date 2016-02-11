@@ -10,11 +10,13 @@ $(function() {
 	var dishView = new DishView($("#content"), model);
 	var dishViewController = new DishViewController(dishView, model);
 	model.addObserver(dishViewController);
-	// var overviewView = new OverviewView($("#overview-content"), model);
+
+	var overviewView = new OverviewView($("#overview-content"), model);
+	var overviewViewController = new OverviewViewController(overviewView, model);
+	model.addObserver(overviewViewController);
+
+
 	// var preparationView = new PreparationView($("#preparation-content"), model);
 
-	this.changeView = function(view, id) {
-
-	}
 
 });

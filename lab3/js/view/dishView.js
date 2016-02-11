@@ -5,6 +5,8 @@ var DishView = function (container, model) {
 	this.loadView = function() {
 		this.id = model.getActiveDish();
 		var dish = model.getDish(this.id);
+		if(typeof dish !== 'undefined') {
+			
 
 		$("#dish-headline").html( dish.name );
 		$("#mid-left img").attr("src", "images/" + dish.image );
@@ -23,6 +25,7 @@ var DishView = function (container, model) {
 		});
 
 		$("#price-dish").html($dishPrice);
+		}
 	}
 }
  

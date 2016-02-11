@@ -2,40 +2,15 @@
 var OverviewView = function (container, model) {
 	var selectedMenu = model.getFullMenu();
 
-	var update = function(arg1, arg2) {
-		if(arg2 === undefined) {
-			if( typeof arg1 === 'number') {
-				model.setNumberOfGuests(arg1);
-			} else {
-				model.selectedDishes = arg1;
-			}
-		} else {
-			model.setNumberOfGuests(arg1);
-			model.selectedDishes = arg2;
-		}
-		$("#selected-menu").html("");
-		loadView();
-	}
-
-	$(document).ready(loadView);
-
-	var loadView = function() {
+	this.loadView = function() {
 		$("#overview-headline span").html( model.getNumberOfGuests() + " people");
 
-		$totalPrice = 0;
+		selectedMenu = model.getFullMenu();
 		$lengthOfArray = selectedMenu.length;
-		//model.getFullMenu();
+		$totalPrice = model.getTotalMenuPrice();
 		$.each(selectedMenu, function(index, dish) {
-			$dishPrice = 0;
 
-
-
-			$.each(dish.ingredients, function(i, o) {
-				$dishPrice += o.price;
-			});
-
-			$totalPrice += $dishPrice;
-
+			$dishPrice = model.getDishPrice(dish.id) * model.getNumberOfGuests();
 			//add vertical line to separate last course with total-price.
 			if(index === ($lengthOfArray - 1)) {
 				$("#selected-menu").append(
@@ -68,5 +43,7 @@ var OverviewView = function (container, model) {
 			"</div>"
 		);
 	}
+
+	$(document).ready(this.loadView());
 }
  
