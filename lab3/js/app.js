@@ -3,6 +3,8 @@ $(function() {
 	var model = new DinnerModel();
 	
 	//And create the needed controllers and views
+	var landingPageController = new LandingPageController();
+
 	var selectionView = new SelectionView($("#content"), model);
 	var selectionViewController = new SelectionViewController(selectionView, model);
 	model.addObserver(selectionViewController);

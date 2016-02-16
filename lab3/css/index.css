@@ -3,6 +3,7 @@
 	background-size: cover;
 	margin: 0;
 	padding: 0;
+	height: 100vh;
 }
 
 #landingPage #header {
@@ -10,7 +11,7 @@
 	border: 4px solid black;
 	width:100vw;
 	height:17vh;
-	display: block;
+	
 	font-weight: bold;
 }
 
@@ -96,6 +97,7 @@ hr {
 	padding-bottom: 40px;
 	padding-top: 40px;
 	border-bottom: 1px solid black;
+	display: none;
 }
 
 #headline h1, #headline p {
@@ -106,7 +108,7 @@ hr {
 
 #selectDishView {
 	flex: 1;
-	display: flex;
+	display: none; /* flex */
 	align-items: stretch;
 	flex-direction: row;
 }
@@ -261,11 +263,6 @@ td {
 	overflow: hidden;
 	text-overflow: ellipsis; 
 }
-
-
-
-
-
 
 
 /*
