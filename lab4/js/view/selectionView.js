@@ -2,6 +2,8 @@ var SelectionView = function (container, model) {
 
 
 	this.loadView = function() {
+		model.dishes = model.syncRequest();
+
 		$("#numberOfGuests").val( model.getNumberOfGuests() );
 
 		$selectValue = $("#mid-upper select").val();
@@ -9,14 +11,14 @@ var SelectionView = function (container, model) {
 
 		if($searchValue == undefined) {
 			$dishArray = model.getAllDishes( $selectValue).prevObject;
-		}else {	
+		}else {
 			$dishArray = model.getAllDishes( $selectValue, $searchValue );
 		}
 
 		$.each( $dishArray , function(index, object) {
 			$("#mid-lower .container").append(
 				"<div class=\"dish col-sm-15\" id=\"" + object.id + "\">" +
-					"<div class=\"dish-header\">" +  
+					"<div class=\"dish-header\">" +
 						"<img src=\"images/" + object.image + "\">" +
 						"<p>" + object.name + "</p>" +
 					"</div>" +
@@ -27,9 +29,9 @@ var SelectionView = function (container, model) {
 		$.each(model.getFullMenu(), function(index, object){
 			$("#pendingRow").before(
 				"<tr class=\"selectedDishRow\">" +
-					"<td class=\"number-column\">" + object.id + "</td>" + 
-					"<td class=\"dish-column\">" + object.name + "</td>" + 
-					"<td class=\"cost-column\">" + model.getDishPrice(object.id)*model.getNumberOfGuests() + "</td>" + 
+					"<td class=\"number-column\">" + object.id + "</td>" +
+					"<td class=\"dish-column\">" + object.name + "</td>" +
+					"<td class=\"cost-column\">" + model.getDishPrice(object.id)*model.getNumberOfGuests() + "</td>" +
 				"</tr>"
 			);
 		});
@@ -40,4 +42,3 @@ var SelectionView = function (container, model) {
 	}
 	$(document).ready(this.loadView());
 }
- 

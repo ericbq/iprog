@@ -12,7 +12,7 @@ var SelectionViewController = function (view, model) {
 			model.selectedDishes = arg2;
 		}
 		updateView();
-	}	
+	}
 
 
 	var updateView = function() {
