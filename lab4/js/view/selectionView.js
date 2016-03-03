@@ -1,8 +1,5 @@
 var SelectionView = function (container, model) {
-
-
 	this.loadView = function() {
-		model.dishes = model.syncRequest();
 
 		$("#numberOfGuests").val( model.getNumberOfGuests() );
 
