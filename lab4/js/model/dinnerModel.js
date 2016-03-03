@@ -4,22 +4,23 @@ var DinnerModel = function() {
 	var numberOfGuests = 3;
 	var observerArray = [];
 	var activeDish = "";
+	var dishes = [];
+
 
 	var selectedDishes = [];
+	var api_key = '1hg3g4Dkwr6pSt22n00EfS01rz568IR6';
 
-	//TODO Lab 2 implement the data structure that will hold number of guest
-	// and selected dinner options for dinner menu
 
 	//ajax request to access the BigOven API.
 	this.syncRequest = function() {
 		$.ajax( {
 			type: 'GET',
-			url:  'http://api.bigoven.com/recipes?api_key=3stL5NVP4s6ZkmK5gt4dci8a4zOQRpD4&pg=1&rpp=10',
+			url:  'http://api.bigoven.com/recipes?api_key=' + api_key + '&pg=1&rpp=10',
 			dataType: 'json',
 			success: function(data) {
-				console.log(data);
-				notifyObservers(data.Results);
-
+				dishes = data.Results;
+				console.log(dishes);
+				notifyObservers();
 			},
 			error: function(xhr, status, error) {
 				console.error(error);
@@ -113,22 +114,24 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-	  return $(this.dishes).filter(function(index,dish) {
-		var found = true;
-		if(filter){
-			found = false;
-			$.each(dish.ingredients,function(index,ingredient) {
-				if(ingredient.name.indexOf(filter)!=-1) {
-					found = true;
-				}
-			});
-			if(dish.name.indexOf(filter) != -1)
-			{
-				found = true;
-			}
-		}
-	  	return dish.type == type && found;
-	  });
+		console.log("get all dishes" + this.dishes);
+		return dishes;
+	//   return $(this.dishes).filter(function(index,dish) {
+	// 	var found = true;
+		// if(filter){
+		// 	found = false;
+		// 	$.each(dish.ingredients,function(index,ingredient) {
+		// 		if(ingredient.name.indexOf(filter)!=-1) {
+		// 			found = true;
+		// 		}
+		// 	});
+		// 	if(dish.name.indexOf(filter) != -1)
+		// 	{
+		// 		found = true;
+		// 	}
+		// }
+	//   	return dish.type == type && found;
+	//   });
 	}
 
 	//function that returns a dish of specific ID
@@ -139,14 +142,56 @@ var DinnerModel = function() {
 		 // 		return dish;
 		 // 	}
 		 // });
-		 if (this.dishes == null) {
-		 	return;
-		 }
-	  for(key=0; key < this.dishes.length; key++){
-			if(this.dishes[key].id == id) {
-				return this.dishes[key];
+
+
+	 if (dishes == null) {
+	 	return;
+	 }
+	  for(key=0; key < dishes.length; key++){
+			if(dishes[key].id == id) {
+				return dishes[key];
 			}
 		}
+	}
+
+	this.getDishFromId = function (id) {
+		var apiKey = api_key;
+		var recipeID = id;
+		var url = "http://api.bigoven.com/recipe/" + recipeID + "?api_key="+apiKey;
+		$.ajax({
+	         type: "GET",
+	         dataType: 'json',
+	         cache: false,
+	         url: url,
+	         success: function (data) {
+	            console.log(data);
+				activeDish = data;
+				notifyObservers();
+	            }
+	         });
+    }
+
+	this.getRecipeJson = function (keyword) {
+        var apiKey = api_key;
+        var titleKeyword = keyword;
+        var url = "http://api.bigoven.com/recipes?pg=1&rpp=10&title_kw="
+                  + titleKeyword
+                  + "&api_key="+apiKey;
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            cache: false,
+            url: url,
+            success: function (data) {
+                console.log(data);
+				dishes = data.Results;
+				notifyObservers();
+            }
+        });
+    }
+
+	this.getDishes = function () {
+		return dishes;
 	}
 
 	//Returns the price of the specific dish
@@ -167,7 +212,7 @@ var DinnerModel = function() {
 	var notifyObservers = function(obj){
 		$.each(observerArray, function(index, object){
 			if(typeof obj === 'undefined'){
-				object.update(numberOfGuests, selectedDishes, activeDish);
+				object.update(numberOfGuests, selectedDishes, activeDish, dishes);
 			} else {
 				object.update(obj);
 			}
@@ -185,6 +230,5 @@ var DinnerModel = function() {
 	// defining the unit i.e. "g", "slices", "ml". Unit
 	// can sometimes be empty like in the example of eggs where
 	// you just say "5 eggs" and not "5 pieces of eggs" or anything else.
-	this.dishes = [];
 
 }

@@ -1,9 +1,9 @@
 $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
-	
+
 	//And create the needed controllers and views
-	var landingPageController = new LandingPageController();
+	var landingPageController = new LandingPageController(model);
 
 	var selectionView = new SelectionView($("#content"), model);
 	var selectionViewController = new SelectionViewController(selectionView, model);

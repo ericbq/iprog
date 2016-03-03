@@ -1,6 +1,6 @@
 var SelectionViewController = function (view, model) {
 
-	this.update = function(arg1, arg2, arg3) {
+	this.update = function(arg1, arg2, arg3, arg4) {
 		if(arg2 === undefined) {
 			if( typeof arg1 === 'number') {
 				view.numberOfGuests = arg1;
@@ -10,6 +10,7 @@ var SelectionViewController = function (view, model) {
 		} else {
 			model.numberOfGuests = arg1;
 			model.selectedDishes = arg2;
+			model.dishes = arg4;
 		}
 		updateView();
 	}
@@ -22,15 +23,23 @@ var SelectionViewController = function (view, model) {
 	}
 
 	$("#dish-search").keyup(function() {
+		$searchValue = $("#dish-search").val();
+
+		$dishArray = model.getRecipeJson( $searchValue );
+ 		console.log($dishArray);
 		updateView();
 	});
 
 	$("#mid-upper select").change(function() {
+		$selectValue = $("#mid-upper select").val();
+
+		$dishArray = model.getRecipeJson( $selectValue);
+		console.log($dishArray);
 		updateView();
 	});
 
 	$(document).on("click", ".dish", function() {
-		model.setActiveDish(this.id);
+		model.setActiveDish(this.RecipeID);
 
 		$("#mid").css('display', 'none');
 		$("#dish-mid").css('display', 'block');
