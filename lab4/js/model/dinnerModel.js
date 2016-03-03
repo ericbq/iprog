@@ -8,7 +8,7 @@ var DinnerModel = function() {
 
 
 	var selectedDishes = [];
-	var api_key = '1hg3g4Dkwr6pSt22n00EfS01rz568IR6';
+	var api_key = 'H9n1zb6es492fj87OxDtZM9s5sb29rW3';
 
 
 	//ajax request to access the BigOven API.
@@ -23,6 +23,7 @@ var DinnerModel = function() {
 				notifyObservers();
 			},
 			error: function(xhr, status, error) {
+				$('#loading').html("Something went wrong!");
 				console.error(error);
 			}
 		})
@@ -76,10 +77,12 @@ var DinnerModel = function() {
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
 		var price = 0;
-
+		if (selectedDishes == []) {
+			return 0;
+		}
 		for (var i = selectedDishes.length - 1; i >= 0; i--) {
-			for(var j = selectedDishes[i].ingredients.length - 1; j >= 0; j--) {
-				price += selectedDishes[i].ingredients[j].price;
+			for(var j = selectedDishes[i].Ingredients.length - 1; j >= 0; j--) {
+				price += selectedDishes[i].Ingredients[j].Quantity;
 			}
 		}
 		return price * numberOfGuests;
@@ -87,16 +90,16 @@ var DinnerModel = function() {
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
-	this.addDishToMenu = function(id) {
-		var selectedDish = this.getDish(id);
-		for (var i = selectedDishes.length - 1; i >= 0; i--) {
-			if(selectedDishes[i].type == selectedDish.type) {
-				selectedDishes[i] = selectedDish;
-				notifyObservers(selectedDishes);
-				return;
-			}
-		}
-		selectedDishes.push(selectedDish);
+	this.addDishToMenu = function(dish) {
+		// var selectedDish = this.getDish(id);
+		// for (var i = selectedDishes.length - 1; i >= 0; i--) {
+		// 	if(selectedDishes[i].type == selectedDish.type) {
+		// 		selectedDishes[i] = selectedDish;
+		// 		notifyObservers(selectedDishes);
+		// 		return;
+		// 	}
+		// }
+		selectedDishes.push(dish);
 		notifyObservers(selectedDishes);
 	}
 
@@ -157,6 +160,7 @@ var DinnerModel = function() {
 	this.getDishFromId = function (id) {
 		var apiKey = api_key;
 		var recipeID = id;
+		console.log(recipeID);
 		var url = "http://api.bigoven.com/recipe/" + recipeID + "?api_key="+apiKey;
 		$.ajax({
 	         type: "GET",
@@ -167,7 +171,10 @@ var DinnerModel = function() {
 	            console.log(data);
 				activeDish = data;
 				notifyObservers();
-	            }
+			},
+			error: function (err) {
+				$('#loading').html("Something went wrong!");
+			}
 	         });
     }
 
@@ -186,7 +193,11 @@ var DinnerModel = function() {
                 console.log(data);
 				dishes = data.Results;
 				notifyObservers();
-            }
+				$('#loading').css("display", "none");
+            },
+			error: function (err) {
+				$('#loading').html("Something went wrong!");
+			}
         });
     }
 
@@ -195,11 +206,13 @@ var DinnerModel = function() {
 	}
 
 	//Returns the price of the specific dish
-	this.getDishPrice = function(id){
+	this.getDishPrice = function(dish){
 		$price = 0;
-		$.each(this.getDish( id ).ingredients, function(index, object){
-			$price += object.price;
-		});
+		if(dish !== undefined) {
+			$.each(dish.Ingredients, function(index, object){
+				$price += object.Quantity;
+			});
+		}
 		return $price;
 	}
 

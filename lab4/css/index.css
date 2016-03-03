@@ -11,7 +11,7 @@
 	border: 4px solid black;
 	width:100vw;
 	height:17vh;
-	
+
 	font-weight: bold;
 }
 
@@ -79,7 +79,7 @@ body {
 
 #left input {
 	max-width: 50px;
-	margin-bottom: 5px; 
+	margin-bottom: 5px;
 }
 
 button {
@@ -135,8 +135,8 @@ hr {
 }
 
 /*Always show arrows in number input field */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
    opacity: 1;
 }
 
@@ -198,7 +198,16 @@ td {
 *
 *
 */
+#loading {
+	position:fixed;
+	height:300px;
+	width:300px;
+	left: 50%;
+	top: 40%;
 
+	background-color: grey;
+	display:none;
+}
 
 #mid-upper {
 	height: 20%;
@@ -235,7 +244,7 @@ td {
 	width: 140px;
 }
 
-.dish { 
+.dish {
 	width: 150px;
 	height:300px;
 }
@@ -261,7 +270,7 @@ td {
 	height: 80px;
 	width: 150px;
 	overflow: hidden;
-	text-overflow: ellipsis; 
+	text-overflow: ellipsis;
 }
 
 
@@ -389,7 +398,7 @@ td {
 
 .dish-header {
 	text-align: center;
-	
+
 }
 
 .dish-list {

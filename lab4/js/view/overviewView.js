@@ -10,14 +10,14 @@ var OverviewView = function (container, model) {
 		$totalPrice = model.getTotalMenuPrice();
 		$.each(selectedMenu, function(index, dish) {
 
-			$dishPrice = model.getDishPrice(dish.id) * model.getNumberOfGuests();
+			$dishPrice = model.getDishPrice(dish) * model.getNumberOfGuests();
 			//add vertical line to separate last course with total-price.
 			if(index === ($lengthOfArray - 1)) {
 				$("#selected-menu").append(
-					"<div class=\"col-sm-3 dish-list last-dish\" id=\"selected-dish-" + dish.id + "\">" +
-						"<div class=\"dish-header\">" +  
-							"<img src=\"images/" + dish.image + "\">" +
-							"<p>" + dish.name + "</p>" +
+					"<div class=\"col-sm-3 dish-list last-dish\" id=\"selected-dish-" + dish.RecipeID + "\">" +
+						"<div class=\"dish-header\">" +
+							"<img src=\""+ dish.HeroPhotoUrl + "\">" +
+							"<p>" + dish.Title + "</p>" +
 						"</div>" +
 						"<p class=\"price-text\">" + $dishPrice + " SEK </p>" +
 					"</div>"
@@ -25,10 +25,10 @@ var OverviewView = function (container, model) {
 			} else {
 
 				$("#selected-menu").append(
-					"<div class=\"col-sm-3 dish-list \" id=\"selected-dish-" + dish.id + "\">" +
-						"<div class=\"dish-header\">" +  
-							"<img src=\"images/" + dish.image + "\">" +
-							"<p>" + dish.name + "</p>" +
+					"<div class=\"col-sm-3 dish-list \" id=\"selected-dish-" + dish.RecipeID + "\">" +
+						"<div class=\"dish-header\">" +
+							"<img src=\"" + dish.HeroPhotoUrl + "\">" +
+							"<p>" + dish.Title + "</p>" +
 						"</div>" +
 						"<p class=\"price-text\">" + $dishPrice + " SEK </p>" +
 					"</div>"
@@ -46,4 +46,3 @@ var OverviewView = function (container, model) {
 
 	$(document).ready(this.loadView());
 }
- 

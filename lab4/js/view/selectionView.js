@@ -29,7 +29,7 @@ var SelectionView = function (container, model) {
 				"<tr class=\"selectedDishRow\">" +
 					"<td class=\"number-column\">" + object.RecipeID + "</td>" +
 					"<td class=\"dish-column\">" + object.Title + "</td>" +
-					"<td class=\"cost-column\">" + model.getDishPrice(object.RecipeID)*model.getNumberOfGuests() + "</td>" +
+					"<td class=\"cost-column\">" + model.getDishPrice(object)*model.getNumberOfGuests() + "</td>" +
 				"</tr>"
 			);
 		});
