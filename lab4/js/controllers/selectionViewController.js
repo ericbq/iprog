@@ -23,6 +23,9 @@ var SelectionViewController = function (view, model) {
 	}
 
 	$("#dish-search").keyup(function() {
+		$('#loading').html("<img src=\"images/loading.gif\">");
+
+
 		$('#loading').css("display", "block");
 
 		$searchValue = $("#dish-search").val();
@@ -38,6 +41,8 @@ var SelectionViewController = function (view, model) {
 	});
 
 	$("#mid-upper select").change(function() {
+		$('#loading').html("<img src=\"images/loading.gif\">");
+
 		$('#loading').css("display", "block");
 
 		$selectValue = $("#mid-upper select").val();
@@ -48,6 +53,8 @@ var SelectionViewController = function (view, model) {
 	});
 
 	$(document).on("click", ".dish", function() {
+		$('#loading').html("<img src=\"images/loading.gif\">");
+		
 		$('#loading').css("display", "block");
 
 		model.getDishFromId(this.id);
