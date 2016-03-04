@@ -24,16 +24,22 @@ var SelectionViewController = function (view, model) {
 
 	$("#dish-search").keyup(function() {
 		$('#loading').css("display", "block");
+
 		$searchValue = $("#dish-search").val();
 
-		$dishArray = model.getRecipeJson( $searchValue );
+		if($searchValue == "") {
+			model.syncRequest();
+		} else {
+			$dishArray = model.getRecipeJson( $searchValue );
+		}
+
  		console.log($dishArray);
 		updateView();
 	});
 
 	$("#mid-upper select").change(function() {
 		$('#loading').css("display", "block");
-		
+
 		$selectValue = $("#mid-upper select").val();
 
 		$dishArray = model.getRecipeJson( $selectValue);
@@ -42,6 +48,8 @@ var SelectionViewController = function (view, model) {
 	});
 
 	$(document).on("click", ".dish", function() {
+		$('#loading').css("display", "block");
+
 		model.getDishFromId(this.id);
 
 

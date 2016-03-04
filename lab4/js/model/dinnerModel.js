@@ -21,6 +21,8 @@ var DinnerModel = function() {
 				dishes = data.Results;
 				console.log(dishes);
 				notifyObservers();
+				$('#loading').css("display", "none");
+				
 			},
 			error: function(xhr, status, error) {
 				$('#loading').html("Something went wrong!");
@@ -171,6 +173,8 @@ var DinnerModel = function() {
 	            console.log(data);
 				activeDish = data;
 				notifyObservers();
+				$('#loading').css("display", "none");
+
 			},
 			error: function (err) {
 				$('#loading').html("Something went wrong!");
