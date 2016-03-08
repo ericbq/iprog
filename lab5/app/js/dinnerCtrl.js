@@ -9,6 +9,7 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope ,Dinner) {
   $scope.selectedDishes = Dinner.getSelectedDishes();
   $scope.searchedDishes = [];
   $scope.totalPrice;
+  $scope.status = "";
 
 
 
@@ -42,13 +43,25 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope ,Dinner) {
 
 
   $scope.searchDish = function() {
+      $scope.status = "loading";
+
+
       if ($scope.dishSearch == "") {
           var dishes = Dinner.AllDishes.get({}, function() {
               $scope.searchedDishes = dishes.Results;
+              $scope.status = "";
+          }, function(err) {
+              console.error(err);
+              $scope.status = "something went wrong!";
+
           });
       } else {
           var dishes = Dinner.DishSearch.get({title_kw: $scope.dishSearch} ,function() {
               $scope.searchedDishes = dishes.Results;
+              $scope.status = "";
+          }, function(err) {
+              console.error(err);
+              $scope.status = "something went wrong!";
           });
       }
   }
@@ -63,10 +76,5 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope ,Dinner) {
       Dinner.addDishToMenu(dish);
       console.log($scope.selectedDishes);
   }
-
-
-
-
-
 
 });
