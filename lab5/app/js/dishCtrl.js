@@ -8,13 +8,10 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
   $scope.activeDish = "";
   $scope.dishPrice = 0;
 
-  console.log("dishctrl" + $routeParams.dishId);
   Dinner.Dish.get({id:$routeParams.dishId}, function(result) {
-      console.log(result);
       $scope.activeDish = result;
       angular.forEach($scope.activeDish.Ingredients, function(val){ $scope.dishPrice += val.Quantity; });
       $scope.activeDish.Price = $scope.dishPrice;
-      console.log($scope.activeDish);
   }, function(err) {
       console.error(err);
   });

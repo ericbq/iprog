@@ -7,7 +7,7 @@ dinnerPlannerApp.factory('Dinner', function ($resource) {
 
   var numberOfGuest = 2;
   var selectedDishes = [];
-  var apiKey = '1hg3g4Dkwr6pSt22n00EfS01rz568IR6';
+  var apiKey = '0OV23011kU7B3VVVgxTTTIfdNXeTI3us';
 
 
 
@@ -51,6 +51,13 @@ this.DishSearch = $resource("http://api.bigoven.com/recipes",
 
 this.Dish = $resource("http://api.bigoven.com/recipe/:id",
     {
+        api_key: apiKey
+    });
+
+this.AllDishes = $resource("http://api.bigoven.com/recipes",
+    {
+        pg:1,
+        rpp:10,
         api_key: apiKey
     });
 

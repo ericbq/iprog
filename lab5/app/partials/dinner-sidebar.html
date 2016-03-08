@@ -30,7 +30,7 @@ this with Total price of the menu -->
 					{{ dish.Title }}
 				</td>
 				<td class="cost-column">
-					{{ dish.Price * numberOfGuests }}
+					{{ dish.Price * numberOfGuests | number:2}}
 				</td>
 			</tr>
             <tr id="pendingRow">
@@ -40,7 +40,7 @@ this with Total price of the menu -->
             </tr>
         </table>
 		<hr>
-		<p id="totalPrice">SEK <span> {{ getTotalMenuPrice() }} </span></p>
-		<button id="confirm-dinner-button">Confirm Dinner</button>
+		<p id="totalPrice">SEK {{ totalPrice | number:2 }}</p>
+		<a href="#/overview" class="btn btn-primary">Confirm Dinner</a>
 	</div>
 </div>

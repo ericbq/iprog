@@ -1,0 +1,29 @@
+<ng-include src="'partials/header.html'"></ng-include>
+
+
+<div id="preparation-content" ng-controller="DinnerCtrl">
+
+    <div id="overview-headline">
+		<h2>My Dinner: {{ numberOfGuests }} people</h2>
+		<a href="#/search" class="btn btn-primary">Go back and edit dinner</a>
+	</div>
+    <table>
+        <tr ng-repeat="dish in selectedDishes">
+            <td class="td-image">
+                <img ng-src="{{ dish.HeroPhotoUrl }}" style="width:300px;"/>
+            </td>
+            <td class="td-image">
+                <h2>{{ dish.Title }}</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis tristique arcu tempus commodo. Curabitur vel ex lorem. Curabitur porta tellus nunc. Aliquam aliquam elementum dui vitae tincidunt. Donec egestas in lorem ac finibus. Aenean molestie, nibh eget luctus gravida, leo quam fringilla sem, a sollicitudin nibh velit at enim. Nunc convallis tortor ac odio consequat vestibulum. Nulla facilisi
+                </p>
+            </td>
+            <td>
+                <h3>Preparation</h3>
+                <p>
+                    {{ dish.Description }}
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>

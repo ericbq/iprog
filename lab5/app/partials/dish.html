@@ -11,7 +11,7 @@
     		<p id="dish-description">
     			Lorem ipsum dolor sit amet, pri eu insolens corrumpit. Mea an quem saperet consequat, at sit soleat postulant iracundia, quo putent efficiendi eu. Summo ridens epicuri ad mea, ei clita utroque propriae ius, mei ei animal nostrum. Te altera tritani repudiare est.
     		</p>
-    		<button>back to Select Dish</button>
+    		<a href="#/search" class="btn btn-primary">back to Select Dish</a>
     		<h2>Preparation</h2>
     		<p id="dish-instructions">
                 {{ activeDish.Description }}
@@ -24,7 +24,7 @@
     		<table id="ingredient-list">
                 <tr ng-repeat="ingredient in activeDish.Ingredients">
                     <td>
-                        {{ ingredient.Quantity * 4 }} {{ " " + ingredient.Unit }}
+                        {{ ingredient.Quantity * 4 | number:2 }} {{ " " + ingredient.Unit }}
                     </td>
                     <td>
                         {{ ingredient.Name }}
@@ -33,7 +33,7 @@
                         SEK
                     </td>
                     <td>
-                        {{ ingredient.Quantity * 4 }}
+                        {{ ingredient.Quantity * 4 | number:2 }}
                     </td>
                 </tr>
     		</table>
@@ -42,7 +42,7 @@
     			<tr>
     				<td><a href="#/search" class="btn btn-primary" ng-click="dinnerCtrl.addDishToMenu(activeDish)">Confirm Dish</a></td>
     				<td><p>SEK</p></td>
-    				<td><p id="price-dish"> {{ dishPrice * 4 }}</p></td>
+    				<td><p id="price-dish"> {{ dishPrice * 4 | number:2 }}</p></td>
     			</tr>
     		</table>
     	</div>
