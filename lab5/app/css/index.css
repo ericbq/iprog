@@ -281,7 +281,7 @@ td {
 
 #dish-mid {
 	width:100%;
-	display: none;
+	display: block;
 }
 
 #mid-left {

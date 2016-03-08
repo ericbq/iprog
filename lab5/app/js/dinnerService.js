@@ -3,10 +3,12 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
-dinnerPlannerApp.factory('Dinner',function ($resource) {
+dinnerPlannerApp.factory('Dinner', function ($resource) {
 
   var numberOfGuest = 2;
   var selectedDishes = [];
+  var apiKey = '1hg3g4Dkwr6pSt22n00EfS01rz568IR6';
+
 
 
   this.setNumberOfGuests = function(num) {
@@ -25,26 +27,33 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
 
   this.setActiveDish = function(id) {
       activeDish = id;
-      notifyObservers();
   }
 
   this.getActiveDish = function() {
       return activeDish;
   }
 
-
-
-
-
-  this.getAllDishes = function (type,filter) {
-      return dishes;
+  this.getSelectedDishes = function () {
+      return selectedDishes;
   }
 
-  this.getDishes = function () {
-      return dishes;
+  this.addDishToMenu = function (dish) {
+      selectedDishes.push(dish);
   }
 
 //EDIT THIS
+this.DishSearch = $resource("http://api.bigoven.com/recipes",
+    {
+        pg:1,
+        rpp:10,
+        api_key: apiKey
+    });
+
+this.Dish = $resource("http://api.bigoven.com/recipe/:id",
+    {
+        api_key: apiKey
+    });
+
   this.getRecipeJson = function (keyword) {
       var apiKey = api_key;
       var titleKeyword = keyword;
@@ -59,7 +68,6 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
           success: function (data) {
               console.log(data);
               dishes = data.Results;
-              notifyObservers();
               $('#loading').css("display", "none");
           },
           error: function (err) {
@@ -81,7 +89,6 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
            success: function (data) {
               console.log(data);
               activeDish = data;
-              notifyObservers();
               $('#loading').css("display", "none");
 
           },
@@ -100,6 +107,8 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
       }
       return $price;
   }
+
+
 
 
 

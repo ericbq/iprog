@@ -22,6 +22,17 @@ this with Total price of the menu -->
                 <th class="dish-column">Dish Name</th>
                 <th class="cost-column">Cost</th>
             </tr>
+			<tr ng-repeat="dish in selectedDishes" class="selectedDishRow">
+				<td class="number-column">
+					{{ dish.RecipeID }}
+				</td>
+				<td class="dish-column">
+					{{ dish.Title }}
+				</td>
+				<td class="cost-column">
+					{{ dish.Price * numberOfGuests }}
+				</td>
+			</tr>
             <tr id="pendingRow">
                 <td class="number-column"></td>
                 <td class="dish-column">Pending</td>
@@ -29,7 +40,7 @@ this with Total price of the menu -->
             </tr>
         </table>
 		<hr>
-		<p id="totalPrice">SEK <span></span></p>
+		<p id="totalPrice">SEK <span> {{ getTotalMenuPrice() }} </span></p>
 		<button id="confirm-dinner-button">Confirm Dinner</button>
 	</div>
 </div>
