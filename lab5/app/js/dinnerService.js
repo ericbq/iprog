@@ -3,16 +3,55 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
-dinnerPlannerApp.factory('Dinner', function ($resource) {
+dinnerPlannerApp.factory('Dinner', function ($resource, $cookieStore) {
 
-  var numberOfGuest = 2;
+  var numberOfGuest;
+
+  if($cookieStore.get('numberOfGuests') === 'undefined') {
+      numberOfGuest = 2;
+  } else {
+      numberOfGuest = $cookieStore.get('numberOfGuests');
+  }
+
   var selectedDishes = [];
-  var apiKey = '0OV23011kU7B3VVVgxTTTIfdNXeTI3us';
+
+  var selectedDishIds = [];
+  var apiKey = 'r02x0R09O76JMCMc4nuM0PJXawUHpBUL';
+
+  var DishFunction = this.Dish = $resource("http://api.bigoven.com/recipe/:id",
+      {
+          api_key: apiKey
+      });
+
+  if($cookieStore.get('selectedDishIds') === 'undefined') {
+      selectedDishIds = [];
+  } else {
+      selectedDishIds = $cookieStore.get('selectedDishIds');
+      angular.forEach(selectedDishIds, function (dish) {
+          console.log("printing " + dish);
+         DishFunction.get({id:dish}, function(result) {
+              var activeDish = result;
+              var dishPrice = 0;
+              angular.forEach(activeDish.Ingredients, function(val){ dishPrice += val.Quantity; });
+              activeDish.Price = dishPrice;
+              selectedDishes.push(activeDish);
+          }, function(err) {
+              console.error(err);
+          });
+
+      })
+  }
 
 
+
+  this.updateCookie = function() {
+      $cookieStore.put('numberOfGuests', numberOfGuest);
+      $cookieStore.put('selectedDishIds', selectedDishIds);
+  }
 
   this.setNumberOfGuests = function(num) {
     numberOfGuest = num;
+    this.updateCookie();
   }
 
   this.getNumberOfGuests = function() {
@@ -24,6 +63,8 @@ dinnerPlannerApp.factory('Dinner', function ($resource) {
   // you will need to modify the model (getDish and getAllDishes)
   // a bit to take the advantage of Angular resource service
   // check lab 5 instructions for details
+
+
 
   this.setActiveDish = function(id) {
       activeDish = id;
@@ -39,6 +80,8 @@ dinnerPlannerApp.factory('Dinner', function ($resource) {
 
   this.addDishToMenu = function (dish) {
       selectedDishes.push(dish);
+      selectedDishIds.push(dish.RecipeID);
+      this.updateCookie();
   }
 
 //EDIT THIS
@@ -49,10 +92,7 @@ this.DishSearch = $resource("http://api.bigoven.com/recipes",
         api_key: apiKey
     });
 
-this.Dish = $resource("http://api.bigoven.com/recipe/:id",
-    {
-        api_key: apiKey
-    });
+
 
 this.AllDishes = $resource("http://api.bigoven.com/recipes",
     {

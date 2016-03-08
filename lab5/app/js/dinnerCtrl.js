@@ -19,6 +19,7 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope ,Dinner) {
   }
 
   $scope.getNumberOfGuests = function() {
+
     return Dinner.getNumberOfGuests();
   }
 
