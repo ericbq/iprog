@@ -18,7 +18,7 @@
                     </p>
                 </div>
                 <p class="price-text">
-                    {{ dish.Price * numberOfGuests }} SEK
+                    {{ getDishPrice(dish) * numberOfGuests | number:2 }} SEK
                 </p>
             </div>
             <div id="total-price">

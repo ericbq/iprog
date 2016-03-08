@@ -24,6 +24,15 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope ,Dinner) {
     return Dinner.getNumberOfGuests();
   }
 
+  $scope.getDishPrice = function (dish) {
+      var dishPrice = 0;
+      angular.forEach(dish.Ingredients, function(val){dishPrice += val.Quantity;console.log(val.Quantity) });
+      console.log("hahaha" + dishPrice);
+
+      return dishPrice;
+  }
+
+
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   $scope.getTotalMenuPrice = function() {
       var price = 0;
@@ -31,15 +40,14 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope ,Dinner) {
           $scope.totalPrice = 0;
       } else {
           for (var i = $scope.selectedDishes.length - 1; i >= 0; i--) {
-            //   for(var j = selectedDishes[i].Ingredients.length - 1; j >= 0; j--) {
-            //       price += selectedDishes[i].Ingredients[j].Quantity;
-            //   }
-            price += $scope.selectedDishes[i].Price;
+            price += $scope.getDishPrice($scope.selectedDishes[i]);
           }
           $scope.totalPrice = price * $scope.getNumberOfGuests();
     }
   }
   $scope.getTotalMenuPrice();
+
+
 
 
   $scope.searchDish = function() {
@@ -75,6 +83,7 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope ,Dinner) {
   this.addDishToMenu = function(dish) {
       Dinner.addDishToMenu(dish);
       console.log($scope.selectedDishes);
+      $scope.getTotalMenuPrice();
   }
 
 });
