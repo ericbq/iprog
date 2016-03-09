@@ -5,9 +5,9 @@
 // the next time.
 dinnerPlannerApp.factory('Dinner', function ($resource, $cookieStore) {
 
-  var numberOfGuest;
+  var numberOfGuest = 2;
 
-  if($cookieStore.get('numberOfGuests') === 'undefined') {
+  if(typeof $cookieStore.get('numberOfGuests') == undefined) {
       numberOfGuest = 2;
   } else {
       numberOfGuest = $cookieStore.get('numberOfGuests');
@@ -23,7 +23,7 @@ dinnerPlannerApp.factory('Dinner', function ($resource, $cookieStore) {
           api_key: apiKey
       });
 
-  if($cookieStore.get('selectedDishIds') === 'undefined') {
+  if(typeof $cookieStore.get('selectedDishIds') == undefined) {
       selectedDishIds = [];
   } else {
       selectedDishIds = $cookieStore.get('selectedDishIds');
